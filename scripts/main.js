@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, Navigation, browserHistory } from 'react-router';
 
 import {
   StorePicker,
-  Header,
-  Order,
-  Inventory,
+  Store,
 } from './components/';
 
-class App extends Component {
-	render() {
-		return (
-			<div className="catch-of-the-day">
-				<div className="menu">
-					<Header tagline="Fresh Seafood Market" />
-				</div>
-				<Order />
-				<Inventory />
-			</div>
-		);
-	}
-}
+const routes = (
+	<Router history={browserHistory}>
+		<Route path="/" component={StorePicker} />
+		<Route path="/store/:storeId" component={Store} />
+	</Router>
+);
 
-ReactDOM.render(<App />, document.querySelector('#main'));
+ReactDOM.render(routes, document.querySelector('#main'));
